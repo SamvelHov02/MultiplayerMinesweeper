@@ -1,26 +1,13 @@
 import Board from './Board';
 import Menu from './Menu';
+import GameHeader from './GameHeader';
 import Header from './Header';
 import Icon from './Icon';
 
 function App() {
   return (
     <div style={{display : 'flex', flexDirection : 'column', minHeight : '100vh'}}> 
-      <header style={{backgroundColor : '#1F1E1F', paddingTop : '15px', paddingBottom : '25px', 
-        borderTopWidth: '2px',
-        borderBottomWidth: '2px',
-        borderColor : 'white',
-        borderTopStyle : 'solid',
-        borderBottomStyle : 'solid',
-        display : 'flex',
-        alignItems : 'left',
-      }}>
-        <h1>Multiplayer</h1>
-        <h1 style={{color : '#1c718d', marginLeft : '25px'}}>Minesweeper</h1>
-        <div className="header-settings">
-          <Icon name={"placeholder"}/>
-        </div>
-      </header>
+      <Header />
 
       <div style={{display : 'flex', flex : 1, flexDirection : 'row', minHeight : '90vh'}}> 
         <div style={{width : '200px', color : 'white', backgroundColor : '#333', borderRightStyle : 'solid', borderRightWidth : '1px', minHeight : '90vh'}}>
@@ -52,7 +39,7 @@ function App() {
             justifyContent : 'center'
           }}>
             <Menu />
-            <Header /> 
+            <GameHeader /> 
             <Board rows={10} cols={10}/> 
           </main>
         </div>
