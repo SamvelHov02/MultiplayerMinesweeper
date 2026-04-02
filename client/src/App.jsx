@@ -1,6 +1,7 @@
 import Board from './Board';
 import Menu from './Menu';
 import Header from './Header';
+import Icon from './Icon';
 
 function App() {
   return (
@@ -11,8 +12,14 @@ function App() {
         borderColor : 'white',
         borderTopStyle : 'solid',
         borderBottomStyle : 'solid',
+        display : 'flex',
+        alignItems : 'left',
       }}>
-        <h1>Multiplayer Minesweeper</h1>
+        <h1>Multiplayer</h1>
+        <h1 style={{color : '#1c718d', marginLeft : '25px'}}>Minesweeper</h1>
+        <div className="header-settings">
+          <Icon name={"placeholder"}/>
+        </div>
       </header>
 
       <div style={{display : 'flex', flex : 1, flexDirection : 'row', minHeight : '90vh'}}> 
