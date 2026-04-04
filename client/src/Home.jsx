@@ -33,8 +33,26 @@ function Home() {
             width : '100%',
           }}>
             {/* Need to create the different  */}
-            <div className='mode-selection' style={{display : 'flex', flexDirection : 'row', width : '100%', justifyContent : 'space-evenly'}}>
-              <div className='single-mode' style={{width : '25%', height : '150px',  display : 'flex', flexDirection : 'column', backgroundColor : '#1C1B1B', alignItems : 'center', textAlign : 'center', justifyContent : 'center', paddingLeft : '2vh', paddingRight : '2vh', justifyContent : 'space-between', borderRadius: '10px'}}>
+            <div className='mode-selection' style={{
+              display : 'flex', 
+              flexDirection : 'row', 
+              width : '100%', 
+              justifyContent : 'space-evenly'
+              }}>
+              <div className='single-mode' style={{
+                width : '25%', 
+                height : '150px',  
+                display : 'flex', 
+                flexDirection : 'column', 
+                backgroundColor : '#1C1B1B', 
+                alignItems : 'center', 
+                textAlign : 'center',
+                justifyContent : 'center', 
+                paddingLeft : '2vh',
+                paddingRight : '2vh', 
+                justifyContent : 'space-between', 
+                borderRadius: '10px'
+                }}>
                 <Icon name={"single"} width={'40%'} height={'40%'} text={''} />
                 <span style={{marginBottom : '10px', color : '#006875'}}>Singleplayer</span>
               </div>

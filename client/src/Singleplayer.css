@@ -1,0 +1,92 @@
+#main-container{
+    display: flex;
+    flex : 1;
+    flex-direction: column;
+    align-items: center;
+    font-family : sans-serif;
+    margin-top : 50px;
+    min-height : 100%
+}
+
+#difficulty-title{
+    color : #D2F7FF;
+    font-size: 80px;
+    font-family : -moz-initial;
+    margin-top: 5vh;
+    padding-bottom : 25vh;
+}
+
+.main-board{
+    display : flex;
+    flex-direction : column;
+    align-items : center;
+    justify-content : space-between;
+    height : 100%;
+    width : 100%;
+}
+
+.difficulty-selection{
+    display : flex; 
+    flex : 1;
+    flex-direction : row;
+    width : 100%;
+    justify-content : space-evenly;
+    min-height: 100%;
+}
+
+.difficulty-beginner{
+    background-color : #1C1B1B ;
+    min-height: 10%;
+    max-height : 20%;
+    justify-content: center;
+    min-width : 20%;
+    border-radius: 10px;
+}
+
+#beginner{
+    padding-top: 1vh;
+    padding-bottom : 1vh;
+    color : #00BCD1
+}
+
+.difficulty-standard{
+    background-color : #1C1B1B ;
+    min-height: 10%;
+    max-height : 20%;
+    justify-content: center;
+    min-width : 20%;
+    border-radius: 10px;
+}
+
+#standard{
+    padding-top: 1vh;
+    padding-bottom : 1vh;
+    color : #00BCD1
+}
+
+.difficulty-expert{
+    background-color : #1C1B1B ;
+    min-height: 10%;
+    max-height : 20%;
+    justify-content: center;
+    min-width : 20%;
+    border-radius: 10px;
+}
+
+#expert{
+    padding-top: 1vh;
+    padding-bottom : 1vh;
+    color : #00BCD1
+}
+
+.grid-size{
+    padding-bottom: 1vh;
+}
+
+.mines-total{
+    color : #FFAB00;
+}
+
+.diff-description{
+    color : white;
+}
