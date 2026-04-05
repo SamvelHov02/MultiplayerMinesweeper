@@ -20,13 +20,18 @@ function Game({ level }) {
             <SideBar />
 
             <div id='main-container'>
-                <main className="main-board">
+                <main className="main-board-game">
                 <div className='main-board-header'>
                     <Timer running={true}/>
                     <Counter totalMines={currentSettings.mines} flagsPlaced={0} />
                 </div>
                 <div className='board-area'>
                     <Board cols={currentSettings.cols} rows={currentSettings.rows}/>
+                    <div className='difficulty-menu'>
+                        <span>Easy 10x10</span>
+                        <span>Normal 16x16</span>
+                        <span>Hard 16x30</span>
+                    </div>
                 </div>
                 </main>
             </div>

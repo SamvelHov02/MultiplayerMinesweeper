@@ -7,7 +7,7 @@ function Board({rows, cols}) {
   );
 
   return (
-    <div className="minesweeper-board" style={{border : '10px solid gray', borderRadius : '10px'}}>
+    <div className="minesweeper-board" style={{border : '20px solid #121212', borderRadius : '10px'}}>
       {grid.map((row, rowIndex) => 
         <div key={rowIndex} className="board-row" style={{display: 'flex'}}>
           {row.map((_, colIndex) => 

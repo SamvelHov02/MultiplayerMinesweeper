@@ -4,11 +4,10 @@ function Cell() {
       {
         width: '30px',
         height: '30px',
-        borderTop : '2px solid gray',
-        borderBottom : '4px solid black',
-        borderLeft : '2px solid gray',
-        borderRight : '2px solid gray',
-        backgroundColor: '#fff',
+        borderTop : '1px solid gray',
+        borderLeft : '1px solid gray',
+        backgroundColor: 'rgb(44 44 44)',
+        margin : '2px'
       }
     }></div>
   );

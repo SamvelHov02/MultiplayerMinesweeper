@@ -1,7 +1,45 @@
+#root{
+    background-color : rgb(32, 31, 31)
+}
+
+.main-board-game{
+    width: 100%;
+}
+
 .main-board-header{
     display : flex;
     flex-direction: row;
     width: 100%; 
     justify-content: space-evenly;
     height: 150px;
+}
+
+.board-area{
+    display : flex ;
+    flex-direction: row;
+    margin-top : 10vh;
+    margin-left : 10vh;
+}
+
+.difficulty-menu{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: #121212;
+    width: 20%;
+    border-radius: 20px;
+}
+
+.difficulty-menu span{
+    background-color: #474646;
+    font-size: 20px;
+    height: 20%;
+    align-content: center;
+    margin-left : 1vh;
+    margin-right : 1vh;
+    border-radius : 15px 
+}
+
+.minesweeper-board{
+    margin-right : 5vh
 }

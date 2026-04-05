@@ -10,7 +10,7 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     {/* <Home /> */}
     {/* <SinglePlayer/> */}
-    {/* <Game level={'easy'}/> */}
-    <App />
+    <Game level={'hard'}/>
+    {/* <App /> */}
   </StrictMode>,
 )
