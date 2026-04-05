@@ -29,9 +29,9 @@ function App() {
             alignItems : 'center',
             justifyContent : 'center'
           }}>
-            <Menu />
+            {/* <Menu />
             <GameHeader /> 
-            <Board rows={10} cols={10}/> 
+            <Board rows={10} cols={10}/>  */}
           </main>
         </div>
       </div>

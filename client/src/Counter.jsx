@@ -1,6 +1,10 @@
-function Counter() {
+import './Counter.css';
+
+function Counter({totalMines, flagsPlaced}) {
   return (
-    <div className="minesweeper-minecounter">Counter</div>
+    <div className="minesweeper-counter">
+      <span>{flagsPlaced}/{totalMines}</span>
+    </div>
   );
 }
 

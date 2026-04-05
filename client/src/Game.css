@@ -1,0 +1,7 @@
+.main-board-header{
+    display : flex;
+    flex-direction: row;
+    width: 100%; 
+    justify-content: space-evenly;
+    height: 150px;
+}

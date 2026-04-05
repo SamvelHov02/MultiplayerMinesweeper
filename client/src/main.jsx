@@ -4,10 +4,13 @@ import './index.css'
 import App from './App.jsx'
 import Home from './Home.jsx'
 import SinglePlayer from './SinglePlayer.jsx'
+import Game from './Game.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    {/*<Home />*/}
-    <SinglePlayer/>
+    {/* <Home /> */}
+    {/* <SinglePlayer/> */}
+    {/* <Game level={'easy'}/> */}
+    <App />
   </StrictMode>,
 )

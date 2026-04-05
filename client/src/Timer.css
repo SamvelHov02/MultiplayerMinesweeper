@@ -1,0 +1,9 @@
+.minesweeper-Timer{
+    color : #00DAF2;
+    background-color: #1C1B1B;
+    height: 100%;
+    font-size : 80px;
+    align-content : center;
+    border-radius: 20px;
+    width: 25%;
+}

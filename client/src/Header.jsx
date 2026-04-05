@@ -14,7 +14,6 @@ function Header(){
       display : 'flex',
       alignItems : 'left',
       maxHeight : '5vh',
-      alignItems : 'left',
       justifyContent : 'space-between'
     }}>
 
@@ -23,9 +22,9 @@ function Header(){
         <h1 style={{color : '#1c718d', marginLeft : '25px'}}>Minesweeper</h1>
       </div>
 
-      <div className="header-settings" style={{marginTop : '32px', marginBottom : '32px', marginRight : '32px'}}>
+      <div className="header-settings" style={{marginTop : '32px',  marginRight : '32px'}}>
         <Icon name={"settings"} width={'auto'} height={'auto'} text={''} /> 
-        <Icon name={"account"} width={'auto'} height={'auto'} text={''}/> 
+        <Icon name={"account"} width={'auto'} height={'auto'} text={''} /> 
       </div>
     </header>
   ); 
