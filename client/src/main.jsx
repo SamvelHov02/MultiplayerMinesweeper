@@ -6,13 +6,15 @@ import Home from './Home.jsx'
 import SinglePlayer from './SinglePlayer.jsx'
 import Game from './Game.jsx';
 import MultiPlayer  from './Multiplayer.jsx'
+import Pvp from './Pvp';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     {/* <Home /> */}
     {/* <SinglePlayer/> */}
     {/* <Game level={'hard'}/> */}
-    <MultiPlayer />
+    {/* <MultiPlayer /> */}
     {/* <App /> */}
+    <Pvp />
   </StrictMode>,
 )
