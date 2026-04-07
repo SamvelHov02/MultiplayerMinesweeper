@@ -32,8 +32,12 @@ function Pvp() {
                     </div> 
                 </div>
                 <div className='pvp-boards'>
-                    <Board rows={24} cols={16}/> 
-                    <Board rows={24} cols={16}/>
+                    <div className='own-board-wrapper'>
+                        <Board rows={24} cols={16}/> 
+                    </div>
+                    <div className='opponent-board-wrapper'>
+                        <Board rows={24} cols={16}/>
+                    </div>
                 </div>
                 </main>
             </div>

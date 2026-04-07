@@ -1,0 +1,15 @@
+.board-row div{
+  width : min(1.5vw, 1.5vh);
+  height : min(1.5vw, 1.5vh);
+  border-top : 1px solid gray;
+  border-left : 1px solid gray;
+  background-color : rgb(44, 44, 44);
+  margin : 2px;
+}
+
+.minesweeper-board-main{
+  display : flex;
+  align-items: center;
+  justify-content : center;
+  padding : min(5vw, 5vh);
+}

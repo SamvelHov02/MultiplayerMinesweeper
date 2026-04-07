@@ -6,8 +6,7 @@
 }
 
 .head-to-head.stats {
-  background-color : #121212;
-  height : 7cqw;
+  background : linear-gradient(to right, rgba(0, 218, 242, 0.1) 0%, transparent 45%, transparent 55%, rgba(224, 53, 0, 0.1) 100%);
   align-content : center; 
   margin-left : 1.5vh;
   margin-right : 1.5vh; 
@@ -59,4 +58,17 @@
   flex-direction : row;
   height : 80%;
   align-items : center;
+  justify-content: space-evenly;
+}
+
+.own-board-wrapper{
+  padding : min(2vw, 2vh);
+  background : radial-gradient(ellipse at center, #121212 0%, rgba(0, 218, 242, 0.1) 100%);
+  border-radius: 40px;
+}
+
+.opponent-board-wrapper{
+  padding : min(2vw, 2vh);
+  background : radial-gradient(ellipse at center, #121212 0%, rgba(224, 53, 0, 0.1) 100%);
+  border-radius: 40px;
 }
