@@ -1,6 +1,6 @@
 .board-row div{
-  width : min(1.5vw, 1.5vh);
-  height : min(1.5vw, 1.5vh);
+  width : min(2vw, 2vh);
+  height : min(2vw, 2vh);
   border-top : 1px solid gray;
   border-left : 1px solid gray;
   background-color : rgb(44, 44, 44);

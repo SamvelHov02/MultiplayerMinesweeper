@@ -1,5 +1,4 @@
 import Cell from './Cell';
-import './Cell.css';
 
 function Board({rows, cols}) {
   // Generate the cell array 
@@ -8,16 +7,16 @@ function Board({rows, cols}) {
   );
 
   return (
-      <div className="minesweeper-board">  
-        {grid.map((row, rowIndex) => 
-          <div key={rowIndex} className="board-row" style={{display: 'flex'}}>
-            {row.map((_, colIndex) => 
-              <Cell key={`${rowIndex}-${colIndex}`}/>
-            )}
-          </div>
-        )}
-      </div>
+    <div className="minesweeper-board"> 
+      {grid.map((row, rowIndex) => 
+        <div key={rowIndex} className="board-row" style={{display: 'flex'}}>
+          {row.map((_, colIndex) => 
+            <Cell key={`${rowIndex}-${colIndex}`}/>
+          )}
+        </div>
+      )}
+    </div>
   );
 }
 
-export default Board; 
+export default Board;

@@ -12,9 +12,9 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     {/* <Home /> */}
     {/* <SinglePlayer/> */}
-    {/* <Game level={'hard'}/> */}
+    <Game level={'hard'}/>
     {/* <MultiPlayer /> */}
     {/* <App /> */}
-    <Pvp />
+    {/* <Pvp /> */}
   </StrictMode>,
 )

@@ -6,10 +6,13 @@ import Timer from './Timer';
 import Counter from './Counter';
 import Board from './Board';
 import './Game.css'
+import './Cell.css'
 import Icon from './Icon';
 
 function Game({ level }) {
     const currentSettings = MINE_CONFIG[level];
+    console.log(currentSettings);
+
     
 
     return (
@@ -26,7 +29,10 @@ function Game({ level }) {
                     <Counter totalMines={currentSettings.mines} flagsPlaced={0} />
                 </div>
                 <div className='board-area'>
-                    <Board cols={currentSettings.cols} rows={currentSettings.rows}/>
+                    <div className='board-wrapper'> 
+                        {console.log("Gets here")}
+                        <Board cols={currentSettings.cols} rows={currentSettings.rows}/>
+                    </div>
                     <div className='difficulty-menu'>
                         <span>Easy 10x10</span>
                         <span>Normal 16x16</span>

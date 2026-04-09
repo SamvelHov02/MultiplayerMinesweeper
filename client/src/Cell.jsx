@@ -1,6 +1,7 @@
-function Cell() {
+function Cell({}) {
   return (
-   <div></div>
+   <div 
+   ></div>
   );
 }
 
