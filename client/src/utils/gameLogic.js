@@ -127,16 +127,31 @@ export function toggleFlag(board, row, col){
   return newboard;
 }
 
-export function leftClickCell(board, row, col){
-  let cell = board[row][col];
-  if (!cell.isRevealed){
-    const newboard = [...board];
-    newboard[row] = [...board[row]];
-    newboard[row][col] = {
-      ...board[row][col], 
-      isRevealed : true
+export function gameOver(board, totalMines){
+  let rows = board.length;
+  let cols = board[0].length;
+  let hiddenCells = 0;
+
+  for (let r = 0; r < rows ; r++){
+    for (let c = 0; c < cols; c++){
+      if (!board[r][c].isRevealed){
+        hiddenCells++;
+      }
     }
-    return newboard;
   }
-  return board;
+  console.log(hiddenCells);
+  return hiddenCells === totalMines;
+}
+
+export function revealAllMines(board){
+  const newboard = structuredClone(board);
+  
+  for (let r = 0; r < newboard.length; r++){
+    for (let c = 0; c < newboard[r].length; c++){
+      if (newboard[r][c].hasMine && !newboard[r][c].isFlagged){
+        newboard[r][c].isRevealed = true;
+      }
+    }
+  }
+  return newboard;
 }

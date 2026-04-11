@@ -1,6 +1,6 @@
 import { MINE_CONFIG } from './utils/constants';
 import { useState } from 'react';
-import { placeMines, revealCell } from './utils/gameLogic';
+import { placeMines, revealCell, gameOver, revealAllMines } from './utils/gameLogic';
 import Cell from './Cell';
 
 const createEmptyBoard = (rows, cols) => {
@@ -21,7 +21,8 @@ function Board({ level, gameState, setState, counter, setCounter}) {
 
   const handleLeftClick = (row, col) => {
     // console.log(`${row}, ${col} was clicked`);
-    if (currBoard[row][col].isRevealed || currBoard[row][col].isFlagged){
+    let finished = gameState === 'defeat' || gameState === 'victory';
+    if (currBoard[row][col].isRevealed || currBoard[row][col].isFlagged || finished){
       return;
     }
 
@@ -32,14 +33,29 @@ function Board({ level, gameState, setState, counter, setCounter}) {
       boardToPlay = placeMines(currBoard, currentSettings.mines, row, col);
     }
 
+    // Check for win or lose conditions 
+    if (boardToPlay[row][col].hasMine){
+      const revealedMines = revealAllMines(boardToPlay);
+      setCurrBoard(revealedMines);
+      setState('defeat');
+      return;
+    } 
+
     const newboard = revealCell(row, col, boardToPlay);
     setCurrBoard(newboard);
+    
+    if (gameOver(newboard, MINE_CONFIG[level].mines)){
+      setState('victory');
+    }
   }
 
   const handleRightClick = (e, row, col) => {
     e.preventDefault();
 
-    if (currBoard[row][col].isRevealed) return;
+    let finished = gameState === 'defeat' || gameState === 'victory';
+    if (currBoard[row][col].isRevealed || finished) return;
+
+    console.log(`Doesn't disable in state ${gameState}`);
 
     const newboard = [...currBoard];
     newboard[row] = [...newboard[row]];

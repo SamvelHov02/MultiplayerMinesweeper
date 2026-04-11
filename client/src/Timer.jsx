@@ -2,8 +2,15 @@ import { useState, useEffect } from 'react';
 import { timeToString } from './utils/other.js';
 import './Timer.css';
 
-function Timer({running}){
+function Timer({ running, gameState }){
   const [seconds, setSeconds] = useState(0);
+
+  useEffect(() => {
+    if (gameState === 'idle'){
+      console.log(gameState);
+      setSeconds(0);
+    }
+  }, [gameState]);
   
   useEffect(() => {
     let interval = null;

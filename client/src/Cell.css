@@ -40,7 +40,8 @@
 }
 
 
-.m
+/* .minesweeper-cell.revealed.mine{
+} */
 
 .minesweeper-board-main{
   display : flex;
