@@ -1,6 +1,6 @@
 import { MINE_CONFIG } from './utils/constants';
 import { useState } from 'react';
-import { placeMines, revealCell, gameOver, revealAllMines } from './utils/gameLogic';
+import { placeMines, revealCell, gameOver, revealAllMines, flagAllMines } from './utils/gameLogic';
 import Cell from './Cell';
 
 const createEmptyBoard = (rows, cols) => {
@@ -22,7 +22,7 @@ function Board({ level, gameState, setState, counter, setCounter}) {
   const handleLeftClick = (row, col) => {
     // console.log(`${row}, ${col} was clicked`);
     let finished = gameState === 'defeat' || gameState === 'victory';
-    if (currBoard[row][col].isRevealed || currBoard[row][col].isFlagged || finished){
+    if (currBoard[row][col].isFlagged || finished){
       return;
     }
 
@@ -45,7 +45,10 @@ function Board({ level, gameState, setState, counter, setCounter}) {
     setCurrBoard(newboard);
     
     if (gameOver(newboard, MINE_CONFIG[level].mines)){
+      const allMinesFlagged = flagAllMines(newboard);
       setState('victory');
+      setCounter(currentSettings.mines);
+      setCurrBoard(allMinesFlagged);
     }
   }
 
@@ -77,7 +80,9 @@ function Board({ level, gameState, setState, counter, setCounter}) {
 
 
   return (
-    <div className="minesweeper-board"> 
+    <div 
+    className="minesweeper-board"
+    onContextMenu={(e) => e.preventDefault()}> 
       {currBoard.map((row, rowIndex) => 
         <div key={rowIndex} className="board-row" style={{display: 'flex'}}>
           {row.map((cellData, colIndex) => 

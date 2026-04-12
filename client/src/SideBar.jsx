@@ -1,4 +1,5 @@
 import Icon from './Icon';
+import './sidebar.css';
 
 function SideBar(){
     return (

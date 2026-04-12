@@ -62,6 +62,13 @@ function Game({ initLevel }) {
                     </div>
                 </div>
                 </main>
+
+                {(gameState === 'victory' || gameState === 'defeat') && (
+                    <div className='game-over-box'>
+                        <h2>{gameState === 'victory' ? "Victory! 😄" : "Defeat 💣"}</h2>
+                        <button onClick={() => switchDifficulty()}>Restart Game</button>
+                    </div>
+                )}
             </div>
             </div>
 

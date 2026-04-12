@@ -8,7 +8,7 @@ function Icon({name, width, height, text}){
     );
 
   return (
-    <div style={{display : 'flex', paddingTop : '15px', paddingBottom : '15px', marginLeft : '15px'}}>
+    <div style={{display : 'flex', paddingTop : '15px', paddingBottom : '15px',  paddingLeft : '15px'}}>
       <img src={Icons[name]} alt={name} style={{maxHeight : '100%', width : width, height : height, objectFit : 'contain', marginRight :'15px'}}/>
       {text}
     </div>

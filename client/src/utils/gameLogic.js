@@ -33,8 +33,10 @@ export function placeMines(board, numMines, startRow, startCol){
 export function revealCell(row, col, board){
   let cell = board[row][col];
   
-  if (cell.isFlagged || cell.isRevealed){
+  if (cell.isFlagged){
     return board;
+  } else if (cell.isRevealed){
+    return revealAdjacentCells(board, row, col);
   }
   
   const newboard = structuredClone(board);
@@ -143,6 +145,7 @@ export function gameOver(board, totalMines){
   return hiddenCells === totalMines;
 }
 
+// When player clicks on a mine cells all other mines should also be revealed
 export function revealAllMines(board){
   const newboard = structuredClone(board);
   
@@ -154,4 +157,61 @@ export function revealAllMines(board){
     }
   }
   return newboard;
+}
+
+// When player wins all mines should come up as flagged
+export function flagAllMines(board){
+  const newboard = structuredClone(board);
+  
+  for (let r = 0; r < newboard.length; r++){
+    for (let c = 0; c < newboard[r].length; c++){
+      if (newboard[r][c].hasMine && !newboard[r][c].isFlagged){
+        newboard[r][c].isFlagged= true;
+      }
+    }
+  }
+  return newboard;
+}
+
+// Reveals the remaining adjacent cells to the cell at row, col 
+export function revealAdjacentCells(board, row, col) {
+  const cell = board[row][col]; // Read-only access
+  let totalFlags = 0;
+
+  // 1. Count flags around the cell
+  for (let rowDir = -1; rowDir < 2; rowDir++) {
+    for (let colDir = -1; colDir < 2; colDir++) {
+      const neigRow = row + rowDir;
+      const neigCol = col + colDir;
+
+      // Check bounds and skip the center cell
+      if (inBounds(neigRow, neigCol, board.length, board[0].length) && (neigRow !== row || neigCol !== col)) {
+        if (board[neigRow][neigCol].isFlagged) {
+          totalFlags++;
+        }
+      }
+    }
+  }
+
+  if (totalFlags === cell.neighborMines) {
+    let updatedBoard = structuredClone(board);
+
+    for (let rowDir = -1; rowDir < 2; rowDir++) {
+      for (let colDir = -1; colDir < 2; colDir++) {
+        const neigRow = row + rowDir;
+        const neigCol = col + colDir;
+
+        if (inBounds(neigRow, neigCol, board.length, board[0].length) && (neigRow !== row || neigCol !== col)) {
+          const neighbor = updatedBoard[neigRow][neigCol];
+          
+          if (!neighbor.isRevealed && !neighbor.isFlagged) {
+            updatedBoard = revealCell(neigRow, neigCol, updatedBoard);
+          }
+        }
+      }
+    }
+    return updatedBoard; 
+  }
+
+  return board; 
 }
