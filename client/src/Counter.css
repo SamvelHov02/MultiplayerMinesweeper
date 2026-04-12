@@ -1,0 +1,17 @@
+.minesweeper-counter{
+    color : #E89B00;
+    background-color: #1C1B1B;
+    height: 80%;
+    font-size : 2vh;
+    align-content : center;
+    border-radius: 20px;
+    width: 10%;
+}
+
+
+@media (orientation: portrait){
+    .minesweeper-counter{
+        height : 30%;
+        width: 25%;
+    }
+}

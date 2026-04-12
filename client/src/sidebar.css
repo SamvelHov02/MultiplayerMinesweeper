@@ -1,0 +1,5 @@
+nav ul div:hover{
+    background-color : #00DAF2;
+    color : black;
+    opacity: 0.6;
+}

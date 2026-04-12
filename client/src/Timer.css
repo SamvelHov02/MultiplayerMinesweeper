@@ -1,0 +1,16 @@
+.minesweeper-Timer{
+    color : #00DAF2;
+    background-color: #1C1B1B;
+    height: 80% ; 
+    font-size : 2vh;
+    align-content : center;
+    border-radius: 20px;
+    width: 10%;
+}
+
+@media (orientation: portrait){
+    .minesweeper-Timer{
+        height : 30%;
+        width: 25%;
+    }
+}

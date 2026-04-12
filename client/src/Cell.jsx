@@ -1,16 +1,26 @@
-function Cell() {
+import Icon from './Icon';
+
+function Cell({ cellData, onClick, onRightClick }) {
+
+  const isNumber = cellData.isRevealed && cellData.neighborMines > 0 && !cellData.hasMine;
+
+  const className = `minesweeper-cell 
+    ${cellData.isRevealed ? 'revealed' : ''}
+    ${isNumber ? `type_${cellData.neighborMines}` : ''}
+    ${cellData.isRevealed && cellData.hasMine ? 'mine' : ''}
+    ${cellData.isFlagged ? 'flag' : ''}`;
+  
+
   return (
-   <div style={
-      {
-        width: '30px',
-        height: '30px',
-        borderTop : '2px solid gray',
-        borderBottom : '4px solid black',
-        borderLeft : '2px solid gray',
-        borderRight : '2px solid gray',
-        backgroundColor: '#fff',
-      }
-    }></div>
+   <div 
+    className={className}
+    onClick={onClick}
+    onContextMenu={onRightClick}
+    >
+      {isNumber && cellData.neighborMines}
+      {cellData.isFlagged && <Icon name='flag' width='auto' height='auto' text=''/> }
+      {cellData.hasMine && cellData.isRevealed && <Icon name='bomb' width='auto' height='auto' text=''/> }
+   </div>
   );
 }
 
