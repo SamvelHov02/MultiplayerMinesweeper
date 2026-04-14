@@ -129,7 +129,7 @@ export function toggleFlag(board, row, col){
   return newboard;
 }
 
-export function gameOver(board, totalMines){
+export function gameWon(board, totalMines){
   let rows = board.length;
   let cols = board[0].length;
   let hiddenCells = 0;
@@ -141,7 +141,6 @@ export function gameOver(board, totalMines){
       }
     }
   }
-  console.log(hiddenCells);
   return hiddenCells === totalMines;
 }
 
@@ -214,4 +213,28 @@ export function revealAdjacentCells(board, row, col) {
   }
 
   return board; 
+}
+
+// Returns a string for the current state of the game
+// either, in-progress or it has ended in victory or defeat 
+export function gameStatus(board, totalMines){
+  
+  let rows = board.length;
+  let cols = board[0].length;
+  
+  // Check for a win or lose condition 
+  let hiddenCells = 0;
+
+  for (let r = 0; r < rows ; r++){
+    for (let c = 0; c < cols; c++){
+      if (!board[r][c].isRevealed){
+        hiddenCells++;
+      } else if (board[r][c].hasMine){
+        return 'defeat';
+      }
+    }
+  }
+
+  let win = hiddenCells === totalMines;
+  return win ? 'victory' : 'in-progress';
 }
