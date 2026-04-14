@@ -1,6 +1,6 @@
 import { MINE_CONFIG } from './utils/constants';
 import { useState } from 'react';
-import { placeMines, revealCell, gameOver, revealAllMines, flagAllMines } from './utils/gameLogic';
+import { placeMines, revealCell, gameStatus, revealAllMines, flagAllMines } from './utils/gameLogic';
 import Cell from './Cell';
 
 const createEmptyBoard = (rows, cols) => {
@@ -33,18 +33,16 @@ function Board({ level, gameState, setState, counter, setCounter}) {
       boardToPlay = placeMines(currBoard, currentSettings.mines, row, col);
     }
 
-    // Check for win or lose conditions 
-    if (boardToPlay[row][col].hasMine){
+    const newboard = revealCell(row, col, boardToPlay);
+    setCurrBoard(newboard);
+    
+    let status = gameStatus(newboard, MINE_CONFIG[level].mines)
+    if (status === 'defeat' || boardToPlay[row][col].hasMine){
       const revealedMines = revealAllMines(boardToPlay);
       setCurrBoard(revealedMines);
       setState('defeat');
       return;
-    } 
-
-    const newboard = revealCell(row, col, boardToPlay);
-    setCurrBoard(newboard);
-    
-    if (gameOver(newboard, MINE_CONFIG[level].mines)){
+    } else if (status === 'victory'){
       const allMinesFlagged = flagAllMines(newboard);
       setState('victory');
       setCounter(currentSettings.mines);
