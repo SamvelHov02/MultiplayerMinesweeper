@@ -88,7 +88,9 @@ function Board({ level, gameState, setState, counter, setCounter}) {
               key={`${rowIndex}-${colIndex}`}
               cellData={cellData} 
               onClick={()=> handleLeftClick(rowIndex, colIndex)}
-              onRightClick={(e) => handleRightClick(e, rowIndex, colIndex)}/>
+              onRightClick={(e) => handleRightClick(e, rowIndex, colIndex)}
+              gameState={gameState}
+              />
           )}
         </div>
       )}

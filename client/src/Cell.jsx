@@ -1,6 +1,6 @@
 import Icon from './Icon';
 
-function Cell({ cellData, onClick, onRightClick }) {
+function Cell({ cellData, onClick, onRightClick, gameState }) {
 
   const isNumber = cellData.isRevealed && cellData.neighborMines > 0 && !cellData.hasMine;
 
@@ -8,7 +8,8 @@ function Cell({ cellData, onClick, onRightClick }) {
     ${cellData.isRevealed ? 'revealed' : ''}
     ${isNumber ? `type_${cellData.neighborMines}` : ''}
     ${cellData.isRevealed && cellData.hasMine ? 'mine' : ''}
-    ${cellData.isFlagged ? 'flag' : ''}`;
+    ${cellData.isFlagged ? 'flag' : ''}
+    ${cellData.isFlagged && !cellData.hasMine && gameState === 'defeat' ? 'incorrect' : ''}`;
   
 
   return (

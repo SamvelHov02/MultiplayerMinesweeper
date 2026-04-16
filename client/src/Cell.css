@@ -41,6 +41,10 @@
   color : #ffffff
 }
 
+.minesweeper-cell.flag.incorrect{
+  background-color: rgba(245, 52, 52, 0.4);
+}
+
 
 /* .minesweeper-cell.revealed.mine{
 } */
