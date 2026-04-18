@@ -1,7 +1,6 @@
 import { Icons } from './assets';
 
 function Icon({name, width, height, text}){
-  console.log(name)
   if (text.length == 0)
     return (
       <img src={Icons[name]} alt={name} style={{maxHeight : '100%', width : width, height : height,  objectFit : 'contain'  }}/>

@@ -1,6 +1,6 @@
 import Icon from './Icon';
 
-function Cell({ cellData, onClick, onRightClick, isChordPressed, onMouseDown, onMouseEnter,  gameState }) {
+function Cell({ cellData, onRightClick, isChordPressed, onMouseUp, onMouseDown, onMouseEnter, onMouseLeave, gameState }) {
 
   const isNumber = cellData.isRevealed && cellData.neighborMines > 0 && !cellData.hasMine;
 
@@ -16,10 +16,12 @@ function Cell({ cellData, onClick, onRightClick, isChordPressed, onMouseDown, on
   return (
    <div 
     className={className}
-    onClick={onClick}
+    // onClick={onClick}
     onContextMenu={onRightClick}
+    onMouseUp={onMouseUp}
     onMouseDown={onMouseDown}
     onMouseEnter={onMouseEnter}
+    onMouseLeave={onMouseLeave}
     >
       {isNumber && cellData.neighborMines}
       {cellData.isFlagged && <Icon name='flag' width='auto' height='auto' text=''/> }

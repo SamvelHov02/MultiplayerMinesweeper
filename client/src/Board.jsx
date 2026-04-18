@@ -1,6 +1,6 @@
 import { MINE_CONFIG } from './utils/constants';
 import { useState } from 'react';
-import { placeMines, revealCell, gameStatus, revealAllMines, flagAllMines } from './utils/gameLogic';
+import { placeMines, revealCell, gameStatus, revealAllMines, flagAllMines, revealAdjacentCells, countFlagsAround} from './utils/gameLogic';
 import Cell from './Cell';
 
 const createEmptyBoard = (rows, cols) => {
@@ -18,6 +18,7 @@ function Board({ level, gameState, setState, counter, setCounter}) {
   const currentSettings = MINE_CONFIG[level];
   const [currBoard, setCurrBoard] = useState(() => createEmptyBoard(currentSettings.rows, currentSettings.cols))
   const [activeChord, setActiveChord] = useState(null);
+  const [activeCell, setActiveCell] = useState(null);
 
 
   const handleLeftClick = (row, col) => {
@@ -77,47 +78,109 @@ function Board({ level, gameState, setState, counter, setCounter}) {
     setCounter(newCounter);
   }
 
-  const handleMouseDown = (e, row, col) => {
-    if (e.button === 0 && currBoard[row][col].isRevealed){
-      alert("Gets here in the if block");
-      setActiveChord({row, col});
+  const handleMouseUp = (e, row, col) => {
+    console.log("Gets to mouse up handler");
+    // Do nothing if not a left click
+    if (e.button !== 0) return;
+
+    // Clear pressed visuals, is it needed?
+    // setActiveChord(null)
+    // setActiveCell(null)
+
+    let finsihed = gameState === 'defeat' || gameState === 'victory';
+    if (finsihed) return;
+
+    const cell = currBoard[row][col];
+
+    // Chording 
+    if (cell.isRevealed){
+      const flagCount = countFlagsAround(currBoard, row, col);
+      
+      if (flagCount === cell.neighborMines) {
+        const newboard = revealAdjacentCells(currBoard, row, col);
+        setCurrBoard(newboard);
+
+        let status = gameStatus(newboard, currentSettings.mines);
+        if (status === 'defeat'){
+          setState('defeat');
+          setCurrBoard(revealAllMines(newboard));
+        } else if (status === 'victory'){
+          setState('victory');
+          setCounter(currentSettings.mines);
+          setCurrBoard(flagAllMines(newboard));
+        }
+      }
+    }
+
+    else{
+      console.log("Gets to single click");
+      handleLeftClick(row, col);
     }
   }
 
-  const clearChord = () => {
+  const handleMouseDown = (e, row, col) => {
+
+    if (e.button === 0 && currBoard[row][col].isRevealed){
+      setActiveChord({row, col});
+    }
+    else if (e.button === 0) {
+      setActiveCell({row, col});
+    }
+  }
+
+  const clearVisuals = () => {
+    setActiveCell(null);
     setActiveChord(null);
   }
 
   return (
     <div 
     className="minesweeper-board"
-    onContextMenu={(e) => e.preventDefault()}> 
+    onContextMenu={(e) => e.preventDefault()}
+    onMouseUp={clearVisuals}
+    onMouseLeave={clearVisuals}
+    onDragStart={(e) => e.preventDefault()}
+    > 
+
       {currBoard.map((row, rowIndex) => 
         <div key={rowIndex} className="board-row" style={{display: 'flex'}}>
           {row.map((cellData, colIndex) => { 
-            let isChordPressed = false;
+            let isVisuallyPressed = false;
             if (activeChord) {
-              alert("Gets to this block");
               const isNeighbor = Math.abs(rowIndex - activeChord.row) <= 1 && Math.abs(colIndex - activeChord.col) <= 1 
               if (isNeighbor && !cellData.isRevealed && !cellData.isFlagged){
-                isChordPressed = true;
+                isVisuallyPressed = true;
+              }
+            } 
+            else if (activeCell){
+              if (activeCell.row === rowIndex && activeCell.col === colIndex && !cellData.isRevealed && !cellData.isFlagged){
+                isVisuallyPressed = true;
               }
             }
             return (
               <Cell 
                 key={`${rowIndex}-${colIndex}`}
                 cellData={cellData} 
-                onClick={()=> handleLeftClick(rowIndex, colIndex)}
+                // onClick={()=> handleLeftClick(rowIndex, colIndex)}
+                onMouseUp={(e) => handleMouseUp(e, rowIndex, colIndex)}
                 onRightClick={(e) => handleRightClick(e, rowIndex, colIndex)}
-                isChordPressed = {isChordPressed}
+                isChordPressed = {isVisuallyPressed}
                 onMouseDown={(e) => handleMouseDown(e, rowIndex, colIndex)}
                 onMouseEnter={(e) => {
                   if (e.buttons === 1){
                     if (cellData.isRevealed){
                       setActiveChord({row : rowIndex, col : colIndex});
+                      setActiveCell(null)
                     } else {
                       setActiveChord(null);
+                      setActiveCell({row : rowIndex, col : colIndex})
                     }
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (e.buttons === 1){
+                    setActiveCell(null);
+                    setActiveChord(null);
                   }
                 }}
                 gameState={gameState}

@@ -238,3 +238,21 @@ export function gameStatus(board, totalMines){
   let win = hiddenCells === totalMines;
   return win ? 'victory' : 'in-progress';
 }
+
+// Counts the number of cells around a cell
+export function countFlagsAround(board, row, col){
+  const cell = board[row][col];
+  let flagCount = 0;
+  
+  for (let r_dir = -1; r_dir < 2; r_dir++){
+    for (let c_dir = -1; c_dir < 2; c_dir++){
+      let neighRow = row + r_dir;
+      let neighCol = col + c_dir;
+
+      if (inBounds(neighRow, neighCol, board.length, board[0].length) && !(neighRow === row && neighCol === col) && board[neighRow][neighCol].isFlagged){
+        flagCount++;
+      }
+    }
+  }
+  return flagCount;
+}

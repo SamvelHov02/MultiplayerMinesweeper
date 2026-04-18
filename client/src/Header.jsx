@@ -2,7 +2,6 @@ import { Icons } from './assets';
 import Icon from './Icon';
 
 function Header(){
-  console.log(Icons["cog"]);
   return (
     <header style={{backgroundColor : '#1F1E1F', paddingTop : '15px', paddingBottom : '25px', 
       borderTopWidth: '2px',

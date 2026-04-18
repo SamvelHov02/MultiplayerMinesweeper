@@ -7,7 +7,6 @@ function Timer({ running, gameState }){
 
   useEffect(() => {
     if (gameState === 'idle'){
-      console.log(gameState);
       setSeconds(0);
     }
   }, [gameState]);
