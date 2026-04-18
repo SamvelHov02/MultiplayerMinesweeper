@@ -17,6 +17,7 @@ const createEmptyBoard = (rows, cols) => {
 function Board({ level, gameState, setState, counter, setCounter}) {
   const currentSettings = MINE_CONFIG[level];
   const [currBoard, setCurrBoard] = useState(() => createEmptyBoard(currentSettings.rows, currentSettings.cols))
+  const [activeChord, setActiveChord] = useState(null);
 
 
   const handleLeftClick = (row, col) => {
@@ -76,6 +77,16 @@ function Board({ level, gameState, setState, counter, setCounter}) {
     setCounter(newCounter);
   }
 
+  const handleMouseDown = (e, row, col) => {
+    if (e.button === 0 && currBoard[row][col].isRevealed){
+      alert("Gets here in the if block");
+      setActiveChord({row, col});
+    }
+  }
+
+  const clearChord = () => {
+    setActiveChord(null);
+  }
 
   return (
     <div 
@@ -83,14 +94,36 @@ function Board({ level, gameState, setState, counter, setCounter}) {
     onContextMenu={(e) => e.preventDefault()}> 
       {currBoard.map((row, rowIndex) => 
         <div key={rowIndex} className="board-row" style={{display: 'flex'}}>
-          {row.map((cellData, colIndex) => 
-            <Cell 
-              key={`${rowIndex}-${colIndex}`}
-              cellData={cellData} 
-              onClick={()=> handleLeftClick(rowIndex, colIndex)}
-              onRightClick={(e) => handleRightClick(e, rowIndex, colIndex)}
-              gameState={gameState}
-              />
+          {row.map((cellData, colIndex) => { 
+            let isChordPressed = false;
+            if (activeChord) {
+              alert("Gets to this block");
+              const isNeighbor = Math.abs(rowIndex - activeChord.row) <= 1 && Math.abs(colIndex - activeChord.col) <= 1 
+              if (isNeighbor && !cellData.isRevealed && !cellData.isFlagged){
+                isChordPressed = true;
+              }
+            }
+            return (
+              <Cell 
+                key={`${rowIndex}-${colIndex}`}
+                cellData={cellData} 
+                onClick={()=> handleLeftClick(rowIndex, colIndex)}
+                onRightClick={(e) => handleRightClick(e, rowIndex, colIndex)}
+                isChordPressed = {isChordPressed}
+                onMouseDown={(e) => handleMouseDown(e, rowIndex, colIndex)}
+                onMouseEnter={(e) => {
+                  if (e.buttons === 1){
+                    if (cellData.isRevealed){
+                      setActiveChord({row : rowIndex, col : colIndex});
+                    } else {
+                      setActiveChord(null);
+                    }
+                  }
+                }}
+                gameState={gameState}
+                />
+              );
+          }
           )}
         </div>
       )}

@@ -45,6 +45,15 @@
   background-color: rgba(245, 52, 52, 0.4);
 }
 
+.minesweeper-cell:not(.revealed):active,
+.minesweeper-cell.pressed {
+  background-color: rgb(20, 20, 20); 
+  /* If you added borders to make the cells look 3D earlier, 
+     you would remove or invert them here */
+}
+
+
+
 
 /* .minesweeper-cell.revealed.mine{
 } */
